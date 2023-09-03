@@ -6,6 +6,8 @@ package quota
 #include <linux/quota.h>
 #include <sys/ioctl.h>
 #include <sys/quota.h>
+#include <sys/syscall.h>
+
 #include <sys/types.h>
 #include <fcntl.h>
 #include <stdint.h>
@@ -13,6 +15,9 @@ package quota
 #include <stdbool.h>
 #include <unistd.h>
 
+int quotactl(int cmd, const char *special, int id, void * addr) {
+    return syscall(__NR_quotactl, cmd, special, id, addr);
+}
 #ifndef FS_XFLAG_PROJINHERIT
 struct fsxattr {
 	__u32		fsx_xflags;
