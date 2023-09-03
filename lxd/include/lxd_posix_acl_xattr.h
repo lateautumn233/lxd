@@ -23,9 +23,6 @@
 /* Supported ACL a_version fields */
 #define POSIX_ACL_XATTR_VERSION	0x0002
 
-/* An undefined entry e_id value */
-#define ACL_UNDEFINED_ID	(-1)
-
 struct posix_acl_xattr_entry {
 	__le16			e_tag;
 	__le16			e_perm;
