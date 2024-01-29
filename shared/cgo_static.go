@@ -1,6 +1,6 @@
-//go:build linux && cgo && !static_build
+//go:build linux && cgo && static_build
 
-package main
+package shared
 
 // #cgo CFLAGS: -std=gnu11 -Wvla -Werror -fvisibility=hidden -Winit-self
 // #cgo CFLAGS: -Wformat=2 -Wshadow -Wendif-labels -fasynchronous-unwind-tables
@@ -8,7 +8,5 @@ package main
 // #cgo CFLAGS: -Werror=implicit-function-declaration
 // #cgo CFLAGS: -Werror=return-type -Wendif-labels -Werror=overflow
 // #cgo CFLAGS: -Wnested-externs -fexceptions
-// #cgo CFLAGS: -I include
-// #cgo pkg-config: lxc
-// #cgo pkg-config: libcap
+// #cgo LDFLAGS: -l:libutil.a -l:libpthread.a
 import "C"

@@ -1,7 +1,8 @@
-//go:build linux && cgo
+//go:build linux && cgo && !static_build
 
 package idmap
 
+// #cgo LDFLAGS: -lacl
 // #cgo CFLAGS: -std=gnu11 -Wvla -Werror -fvisibility=hidden -Winit-self
 // #cgo CFLAGS: -Wformat=2 -Wshadow -Wendif-labels -fasynchronous-unwind-tables
 // #cgo CFLAGS: -pipe --param=ssp-buffer-size=4 -g -Wunused

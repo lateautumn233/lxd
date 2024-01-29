@@ -1,4 +1,4 @@
-//go:build linux && cgo && !static_build
+//go:build linux && cgo && static_build
 
 package main
 
@@ -9,6 +9,8 @@ package main
 // #cgo CFLAGS: -Werror=return-type -Wendif-labels -Werror=overflow
 // #cgo CFLAGS: -Wnested-externs -fexceptions
 // #cgo CFLAGS: -I include
-// #cgo pkg-config: lxc
-// #cgo pkg-config: libcap
+// #cgo pkg-config: --static lxc
+// #cgo pkg-config: --static libcap
+// #cgo pkg-config: --static dqlite
+// #cgo LDFLAGS: -l:libintl.a  /usr/lib/libudev.a -l:liblz4.a
 import "C"
