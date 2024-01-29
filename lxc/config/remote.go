@@ -58,7 +58,7 @@ func (c *Config) ParseRemote(raw string) (string, string, error) {
 // GetInstanceServer returns a InstanceServer struct for the remote.
 func (c *Config) GetInstanceServer(name string) (lxd.InstanceServer, error) {
 	// Handle "local" on non-Linux
-	if name == "local" && runtime.GOOS != "linux" {
+	if name == "local" && runtime.GOOS == "NULL" {
 		return nil, ErrNotLinux
 	}
 
@@ -127,7 +127,7 @@ func (c *Config) GetInstanceServer(name string) (lxd.InstanceServer, error) {
 // GetImageServer returns a ImageServer struct for the remote.
 func (c *Config) GetImageServer(name string) (lxd.ImageServer, error) {
 	// Handle "local" on non-Linux
-	if name == "local" && runtime.GOOS != "linux" {
+	if name == "local" && runtime.GOOS == "NULL" {
 		return nil, ErrNotLinux
 	}
 

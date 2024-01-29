@@ -1591,6 +1591,9 @@ func (n *bridge) setup(oldConfig map[string]string) error {
 			dnsmasqCmd = append(dnsmasqCmd, []string{"-g", n.state.OS.UnprivGroup}...)
 		}
 
+		// Default DNS
+		dnsmasqCmd = append(dnsmasqCmd, []string{"--server=223.5.5.5", "--server=119.29.29.29", "--server=2402:4e00::", "--no-resolv"}...)
+
 		// Create DHCP hosts directory.
 		if !shared.PathExists(shared.VarPath("networks", n.name, "dnsmasq.hosts")) {
 			err = os.MkdirAll(shared.VarPath("networks", n.name, "dnsmasq.hosts"), 0755)

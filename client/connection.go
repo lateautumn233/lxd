@@ -195,7 +195,7 @@ func ConnectLXDUnixWithContext(ctx context.Context, path string, args *Connectio
 		if path == "" {
 			lxdDir := os.Getenv("LXD_DIR")
 			if lxdDir == "" {
-				lxdDir = "/var/lib/lxd"
+				lxdDir = "/data/lxd/var/lib/lxd"
 			}
 
 			path = filepath.Join(lxdDir, "unix.socket")
