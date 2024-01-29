@@ -15,6 +15,11 @@ func LoadModule(module string) error {
 	if shared.PathExists(fmt.Sprintf("/sys/module/%s", module)) {
 		return nil
 	}
+	
+	devPath := strings.Replace(fmt.Sprintf("/dev/%s", module), "_", "-", -1)
+	if shared.PathExists(devPath) {
+		return nil
+	}
 
 	_, err := shared.RunCommand("modprobe", "-b", module)
 	return err

@@ -68,7 +68,7 @@ func restServer(d *Daemon) *http.Server {
 	mux.SkipClean(true)
 	mux.UseEncodedPath() // Allow encoded values in path segments.
 
-	uiPath := os.Getenv("LXD_UI")
+	uiPath := "/data/lxd/var/lib/lxd/ui"
 	uiEnabled := uiPath != "" && shared.PathExists(uiPath)
 	if uiEnabled {
 		uiHttpDir := uiHttpDir{http.Dir(uiPath)}

@@ -15,7 +15,7 @@ import (
 	"github.com/lxc/lxd/shared/logger"
 )
 
-// #cgo LDFLAGS: -lacl
+// #cgo LDFLAGS: -l:libacl.a
 /*
 #ifndef _GNU_SOURCE
 #define _GNU_SOURCE 1
