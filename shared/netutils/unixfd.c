@@ -21,7 +21,7 @@
 #include "unixfd.h"
 #include "../../lxd/include/memory_utils.h"
 
-int lxc_abstract_unix_send_fds(int fd, int *sendfds, int num_sendfds,
+int lxd_abstract_unix_send_fds(int fd, int *sendfds, int num_sendfds,
 			       void *data, size_t size)
 {
 	__do_free char *cmsgbuf = NULL;
@@ -58,7 +58,7 @@ int lxc_abstract_unix_send_fds(int fd, int *sendfds, int num_sendfds,
 	return sendmsg(fd, &msg, MSG_NOSIGNAL);
 }
 
-ssize_t lxc_abstract_unix_recv_fds_iov(int fd, struct unix_fds *ret_fds,
+ssize_t lxd_abstract_unix_recv_fds_iov(int fd, struct unix_fds *ret_fds,
 				       struct iovec *ret_iov, size_t size_ret_iov)
 {
 	__do_free char *cmsgbuf = NULL;
@@ -197,7 +197,7 @@ again:
 	return ret;
 }
 
-ssize_t lxc_abstract_unix_recv_fds(int fd, struct unix_fds *ret_fds,
+ssize_t lxd_abstract_unix_recv_fds(int fd, struct unix_fds *ret_fds,
 				   void *ret_data, size_t size_ret_data)
 {
 	char buf[1] = {};
@@ -207,7 +207,7 @@ ssize_t lxc_abstract_unix_recv_fds(int fd, struct unix_fds *ret_fds,
 	};
 	ssize_t ret;
 
-	ret = lxc_abstract_unix_recv_fds_iov(fd, ret_fds, &iov, 1);
+	ret = lxd_abstract_unix_recv_fds_iov(fd, ret_fds, &iov, 1);
 	if (ret < 0)
 		return ret;
 

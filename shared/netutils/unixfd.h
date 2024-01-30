@@ -28,14 +28,14 @@ struct unix_fds {
 	__s32 fd[KERNEL_SCM_MAX_FD];
 } __attribute__((aligned(8)));
 
-extern int lxc_abstract_unix_send_fds(int fd, int *sendfds, int num_sendfds,
+extern int lxd_abstract_unix_send_fds(int fd, int *sendfds, int num_sendfds,
 				      void *data, size_t size);
 
-extern ssize_t lxc_abstract_unix_recv_fds_iov(int fd, struct unix_fds *ret_fds,
+extern ssize_t lxd_abstract_unix_recv_fds_iov(int fd, struct unix_fds *ret_fds,
 					      struct iovec *ret_iov,
 					      size_t size_ret_iov);
 
-extern ssize_t lxc_abstract_unix_recv_fds(int fd, struct unix_fds *ret_fds,
+extern ssize_t lxd_abstract_unix_recv_fds(int fd, struct unix_fds *ret_fds,
 					  void *ret_data, size_t size_ret_data);
 
 #endif // LXD_UNIXFD_H

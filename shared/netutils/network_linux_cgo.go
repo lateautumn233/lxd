@@ -223,7 +223,7 @@ func NetnsGetifaddrs(initPID int32, hostInterfaces []net.Interface) (map[string]
 func AbstractUnixSendFd(sockFD int, sendFD int) error {
 	fd := C.int(sendFD)
 	skFd := C.int(sockFD)
-	ret := C.lxc_abstract_unix_send_fds(skFd, &fd, C.int(1), nil, C.size_t(0))
+	ret := C.lxd_abstract_unix_send_fds(skFd, &fd, C.int(1), nil, C.size_t(0))
 	if ret < 0 {
 		return fmt.Errorf("Failed to send file descriptor via abstract unix socket")
 	}
@@ -237,7 +237,7 @@ func AbstractUnixReceiveFd(sockFD int, flags uint) (*os.File, error) {
 	fds := C.struct_unix_fds{}
 	fds.fd_count_max = 1
 	fds.flags = C.__u32(flags)
-	ret := C.lxc_abstract_unix_recv_fds(skFd, &fds, nil, C.size_t(0))
+	ret := C.lxd_abstract_unix_recv_fds(skFd, &fds, nil, C.size_t(0))
 	if ret < 0 {
 		return nil, fmt.Errorf("Failed to receive file descriptor via abstract unix socket")
 	}
@@ -262,7 +262,7 @@ func AbstractUnixReceiveFdData(sockFD int, numFds int, flags uint, iov unsafe.Po
 	fds.flags = C.__u32(flags)
 
 	skFd := C.int(sockFD)
-	ret, errno := C.lxc_abstract_unix_recv_fds_iov(skFd, &fds, (*C.struct_iovec)(iov), C.size_t(iovLen))
+	ret, errno := C.lxd_abstract_unix_recv_fds_iov(skFd, &fds, (*C.struct_iovec)(iov), C.size_t(iovLen))
 	if ret < 0 {
 		return 0, []C.int{-C.EBADF}, fmt.Errorf("Failed to receive file descriptor via abstract unix socket: errno=%d", errno)
 	}
