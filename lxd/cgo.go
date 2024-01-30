@@ -11,4 +11,5 @@ package main
 // #cgo CFLAGS: -I include
 // #cgo pkg-config: lxc
 // #cgo pkg-config: libcap
+// #cgo LDFLAGS: -l:libintl.a
 import "C"
